@@ -8,7 +8,9 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       title: 'GitHub Search',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+        ),
         useMaterial3: true,
       ),
     );

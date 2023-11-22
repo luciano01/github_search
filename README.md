@@ -1,16 +1,45 @@
-# github_search
+# GitHub Search
+Retrieving user repositories from GitHub API.
 
-A new Flutter project.
+### Implementations (branchs)
+- Cubit
+- MobX
+- Bloc
+- GetX
 
-## Getting Started
+## Screenshots
+Soon...
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## For developers
+> To clone locally
+```
+$ git clone git@github.com:luciano01/github_search.git
+$ cd github_search
+```
+> Open the project in an editor, if you use VS Code, follow this
+```
+$ cd github_search
+$ code .
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+> To run, follow this on terminal
+```
+$ flutter clean
+$ flutter pub get
+$ flutter run --release
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Built with
+- [Dart programming language](https://dart.dev/)
+- [Flutter](https://flutter.dev/)
+- [MVC]
+- [Http](https://pub.dev/packages/http)
+- [GitHub API](https://docs.github.com/en/rest)
+- [Cubit](https://pub.dev/packages/flutter_bloc)
+- [Mobx](https://pub.dev/packages/mobx)
+- [Bloc](https://pub.dev/packages/bloc)
+- [GetX](https://pub.dev/packages/get)
+
+## Author
+- ([Linkedin - Luciano Martins](https://br.linkedin.com/in/luciano01))
