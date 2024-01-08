@@ -20,10 +20,16 @@ class UserRepositoryState {
 
   Future<void> getUserRepositories({required String userName}) async {
     _isLoading.value = true;
-    _repositories.value =
-        await _userRepositoriesRepositoryImpl.userRepositories(
-      username: userName,
-    );
-    _isLoading.value = false;
+    Future.delayed(const Duration(seconds: 2)).then((_) async {
+      try {
+        _repositories.value =
+            await _userRepositoriesRepositoryImpl.userRepositories(
+          username: userName,
+        );
+        _isLoading.value = false;
+      } catch (e) {
+        throw Exception();
+      }
+    });
   }
 }

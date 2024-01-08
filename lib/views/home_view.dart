@@ -95,42 +95,67 @@ class HomeView extends GetView<UserRepositoryState> {
                     },
                     itemBuilder: (context, index) {
                       final repository = controller.repositories[index];
-                      return ListTile(
-                        title: Text(repository.name),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                      return Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 16,
+                        ),
+                        child: Row(
                           children: [
-                            Text(
-                              repository.description,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Language: ${repository.language}',
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                ),
-                                Text(
-                                  'Stars: ${repository.stargazersCount}',
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                ),
-                                Text(
-                                  'Forks: ${repository.forksCount}',
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                ),
-                              ],
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          repository.name,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        icon: const Icon(Icons.share_outlined),
+                                        onPressed: () {},
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 16,
+                                    ),
+                                    child: Text(
+                                      repository.description,
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 3,
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Language: ${repository.language}',
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      Text(
+                                        'Stars: ${repository.stargazersCount}',
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      Text(
+                                        'Forks: ${repository.forksCount}',
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
-                        ),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.share_outlined),
-                          onPressed: () {},
                         ),
                       );
                     },
