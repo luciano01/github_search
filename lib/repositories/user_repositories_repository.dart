@@ -18,8 +18,9 @@ class UserRepositoriesRepositoryImpl implements UserRepositoriesRepository {
   Future<List<UserRepositoryModel>> userRepositories({
     required String username,
   }) async {
+    final finalUsername = username.isEmpty ? 'luciano01' : username;
     final response = await client.get(
-      Uri.parse('https://api.github.com/users/$username/repos'),
+      Uri.parse('https://api.github.com/users/$finalUsername/repos'),
       headers: {'Content-Type': 'application/json'},
     );
 
