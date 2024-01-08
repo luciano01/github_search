@@ -55,16 +55,14 @@ class HomeView extends GetView<UserRepositoryState> {
                       hintText: 'Search by username',
                     ),
                     onFieldSubmitted: (value) {
-                      controller.getUserRepositories(userName: value);
+                      controller.getUserRepositories();
                     },
                   ),
                 ),
                 IconButton(
                   icon: const Icon(Icons.search),
                   onPressed: () {
-                    controller.getUserRepositories(
-                      userName: controller.textEditingController.text,
-                    );
+                    controller.getUserRepositories();
                   },
                 ),
               ],
@@ -72,100 +70,104 @@ class HomeView extends GetView<UserRepositoryState> {
           ),
           Expanded(
             child: Obx(() {
-              if (controller.repositories.isEmpty) {
-                return const Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Search repositories by GitHub username.'),
-                      Text('Ex: luciano01'),
-                    ],
-                  ),
-                );
+              if (controller.isLoading) {
+                return _loadingList();
               } else {
-                return Visibility(
-                  visible: !controller.isLoading,
-                  replacement: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  child: ListView.separated(
-                    itemCount: controller.repositories.length,
-                    separatorBuilder: (context, index) {
-                      return const Divider();
-                    },
-                    itemBuilder: (context, index) {
-                      final repository = controller.repositories[index];
-                      return Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 16,
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          repository.name,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleLarge,
-                                        ),
-                                      ),
-                                      IconButton(
-                                        icon: const Icon(Icons.share_outlined),
-                                        onPressed: () {},
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 16,
-                                    ),
-                                    child: Text(
-                                      repository.description,
-                                      style:
-                                          Theme.of(context).textTheme.bodyLarge,
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 3,
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Language: ${repository.language}',
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      Text(
-                                        'Stars: ${repository.stargazersCount}',
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      Text(
-                                        'Forks: ${repository.forksCount}',
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                );
+                return _listOfRepositories();
               }
             }),
           ),
         ],
       ),
+    );
+  }
+
+  Center _initialContent() {
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Search repositories by GitHub username.'),
+          Text('Ex: luciano01'),
+        ],
+      ),
+    );
+  }
+
+  Center _loadingList() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  ListView _listOfRepositories() {
+    return ListView.separated(
+      itemCount: controller.repositories.length,
+      separatorBuilder: (context, index) {
+        return const Divider();
+      },
+      itemBuilder: (context, index) {
+        final repository = controller.repositories[index];
+        return Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: 8,
+            horizontal: 16,
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            repository.name,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.share_outlined),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 16,
+                      ),
+                      child: Text(
+                        repository.description,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Language: ${repository.language}',
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          'Stars: ${repository.stargazersCount}',
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          'Forks: ${repository.forksCount}',
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

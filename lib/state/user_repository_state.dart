@@ -7,9 +7,13 @@ import '../repositories/repositories.dart';
 class UserRepositoryState {
   final UserRepositoriesRepositoryImpl _userRepositoriesRepositoryImpl;
 
-  UserRepositoryState(this._userRepositoriesRepositoryImpl);
+  UserRepositoryState(this._userRepositoriesRepositoryImpl) {
+    getUserRepositories();
+  }
 
-  final TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController(
+    text: 'luciano01',
+  );
   TextEditingController get textEditingController => _textEditingController;
 
   final _isLoading = false.obs;
@@ -18,18 +22,18 @@ class UserRepositoryState {
   final _repositories = RxList<UserRepositoryModel>();
   List<UserRepositoryModel> get repositories => _repositories;
 
-  Future<void> getUserRepositories({required String userName}) async {
-    _isLoading.value = true;
-    Future.delayed(const Duration(seconds: 2)).then((_) async {
-      try {
+  Future<void> getUserRepositories() async {
+    try {
+      _isLoading.value = true;
+      Future.delayed(const Duration(seconds: 2)).then((_) async {
         _repositories.value =
             await _userRepositoriesRepositoryImpl.userRepositories(
-          username: userName,
+          username: _textEditingController.text,
         );
         _isLoading.value = false;
-      } catch (e) {
-        throw Exception();
-      }
-    });
+      });
+    } catch (e) {
+      throw Exception();
+    }
   }
 }
