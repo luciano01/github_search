@@ -8,7 +8,7 @@ Retrieving user repositories from GitHub API.
 - GetX
 
 ## Demo
-Soon...
+https://github.com/luciano01/github_search/assets/28585974/992154fa-9285-466b-8b7b-1fb9ffc80535
 
 ## For developers
 Create a clone of the target repository:
