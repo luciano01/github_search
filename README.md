@@ -7,32 +7,29 @@ Retrieving user repositories from GitHub API.
 - Bloc
 - GetX
 
-## Screenshots
+## Demo
 Soon...
 
-
 ## For developers
-> To clone locally
+Create a clone of the target repository:
 ```
 $ git clone git@github.com:luciano01/github_search.git
+```
+Enter the cloned project directory with the command:
+> Or the path to the cloned project folder.
+```
 $ cd github_search
 ```
-> Open the project in an editor, if you use VS Code, follow this
-```
-$ cd github_search
-$ code .
-```
-
-> To run, follow this on terminal
+Open an Android emulator or connect your smartphone to your computer and execute the following commands:
 ```
 $ flutter clean
 $ flutter pub get
-$ flutter run --release
+$ flutter run
 ```
 
 ## Built with
-- [Dart programming language](https://dart.dev/)
-- [Flutter](https://flutter.dev/)
+- [Dart programming language](https://dart.dev/) Version 3.0.5
+- [Flutter](https://flutter.dev/) Version 3.10.5
 - [MVC]
 - [Http](https://pub.dev/packages/http)
 - [GitHub API](https://docs.github.com/en/rest)
@@ -41,5 +38,5 @@ $ flutter run --release
 - [Bloc](https://pub.dev/packages/bloc)
 - [GetX](https://pub.dev/packages/get)
 
-## Author
-- ([Linkedin - Luciano Martins](https://br.linkedin.com/in/luciano01))
+## Developer and Author
+- Luciano Martins ([Linkedin](https://br.linkedin.com/in/luciano01))
